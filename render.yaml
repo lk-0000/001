@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: yahoo-finance-scraper
+    runtime: python
+    buildCommand: pip install -r render_requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --reuse-port main:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
